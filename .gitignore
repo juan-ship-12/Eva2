@@ -1,0 +1,20 @@
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Entorno virtual
+eva2/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Base de datos local (opcional, depende del profe)
+# db.sqlite3
+
+# Logs
+*.log
