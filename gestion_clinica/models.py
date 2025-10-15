@@ -1,6 +1,9 @@
 """
-Modelos de datos para la app gestion_clinica.
-Incluye las entidades principales del sistema clínico.
+Módulo de modelos para la app gestion_clinica.
+Define las entidades principales del sistema de gestión clínica.
+Incluye modelos para pacientes, médicos, consultas, tratamientos y medicamentos.
+Cada modelo representa una tabla en la base de datos PostgreSQL.
+Uso de comentarios explicativos en cada módulo o clase.
 """
 from django.db import models
 
@@ -143,3 +146,45 @@ class RecetaMedica(models.Model):
 
     def __str__(self):
         return f"Receta de {self.medicamento} para {self.tratamiento.consulta.paciente}"
+
+class Cita(models.Model):
+    """
+    Modelo para representar citas médicas programadas.
+    Nueva entidad para mejorar la gestión de horarios y disponibilidad.
+    """
+    # Definición de CHOICES para tipo de cita
+    TIPO_CITA_CHOICES = [
+        ('PRIMERA_VEZ', 'Primera vez'),
+        ('CONTROL', 'Control'),
+        ('URGENCIA', 'Urgencia'),
+        ('SEGUIMIENTO', 'Seguimiento'),
+    ]
+    
+    # Definición de CHOICES para estado de la cita
+    ESTADO_CITA_CHOICES = [
+        ('PROGRAMADA', 'Programada'),
+        ('CONFIRMADA', 'Confirmada'),
+        ('CANCELADA', 'Cancelada'),
+        ('REALIZADA', 'Realizada'),
+        ('NO_ASISTIO', 'No asistió'),
+    ]
+
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
+    fecha_hora = models.DateTimeField()
+    tipo_cita = models.CharField(
+        max_length=20,
+        choices=TIPO_CITA_CHOICES,
+        default='PRIMERA_VEZ'
+    )
+    estado = models.CharField(
+        max_length=20,
+        choices=ESTADO_CITA_CHOICES,
+        default='PROGRAMADA'
+    )
+    motivo = models.CharField(max_length=200)
+    observaciones = models.TextField(blank=True)
+    duracion_minutos = models.IntegerField(default=30)
+
+    def __str__(self):
+        return f"Cita de {self.paciente} con {self.medico} - {self.fecha_hora}"

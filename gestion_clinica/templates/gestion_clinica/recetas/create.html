@@ -1,0 +1,68 @@
+{% extends 'gestion_clinica/form_base.html' %}
+
+{% block title %}Crear Receta - Salud Vital{% endblock %}
+{% block header_title %}Crear Nueva Receta{% endblock %}
+
+{% block form_title %}📝 Nueva Receta Médica{% endblock %}
+{% block form_description %}Complete los datos de la receta médica para registrarla en el sistema.{% endblock %}
+{% block back_url %}{% url 'receta-list' %}{% endblock %}
+{% block back_text %}Volver a Recetas{% endblock %}
+{% block form_section_title %}Datos de la Receta{% endblock %}
+{% block submit_text %}💾 Guardar Receta{% endblock %}
+{% block cancel_url %}{% url 'receta-list' %}{% endblock %}
+
+{% block form_fields %}
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.tratamiento.id_for_label }}">{{ form.tratamiento.label }}</label>
+        {{ form.tratamiento }}
+        {% if form.tratamiento.errors %}
+            <div class="error">{{ form.tratamiento.errors.0 }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-field">
+        <label for="{{ form.medicamento.id_for_label }}">{{ form.medicamento.label }}</label>
+        {{ form.medicamento }}
+        {% if form.medicamento.errors %}
+            <div class="error">{{ form.medicamento.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.dosis.id_for_label }}">{{ form.dosis.label }}</label>
+        {{ form.dosis }}
+        {% if form.dosis.errors %}
+            <div class="error">{{ form.dosis.errors.0 }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-field">
+        <label for="{{ form.frecuencia.id_for_label }}">{{ form.frecuencia.label }}</label>
+        {{ form.frecuencia }}
+        {% if form.frecuencia.errors %}
+            <div class="error">{{ form.frecuencia.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.duracion.id_for_label }}">{{ form.duracion.label }}</label>
+        {{ form.duracion }}
+        {% if form.duracion.errors %}
+            <div class="error">{{ form.duracion.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="form-field">
+    <label for="{{ form.motivo.id_for_label }}">{{ form.motivo.label }}</label>
+    {{ form.motivo }}
+    {% if form.motivo.errors %}
+        <div class="error">{{ form.motivo.errors.0 }}</div>
+    {% endif %}
+</div>
+{% endblock %}

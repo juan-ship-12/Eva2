@@ -1,0 +1,107 @@
+{% extends 'gestion_clinica/base.html' %}
+
+{% block title %}Medicamentos - Salud Vital{% endblock %}
+
+{% block header_title %}Medicamentos{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>💊 Gestión de Medicamentos</h2>
+    <p>Administra el inventario de medicamentos del sistema.</p>
+    
+    <div style="margin-top: 16px;">
+        <a href="{% url 'home' %}" class="btn btn-secondary">← Volver al Inicio</a>
+        <a href="{% url 'medicamento-create' %}" class="btn btn-primary">+ Agregar Medicamento</a>
+        <a href="/swagger/" class="btn btn-secondary" target="_blank">Ver API Docs</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Lista de Medicamentos</h2>
+    <p>Medicamentos registrados en el inventario del sistema.</p>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Laboratorio</th>
+                <th>Stock</th>
+                <th>Precio Unitario</th>
+                <th>Estado Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if medicamentos %}
+                {% for medicamento in medicamentos %}
+                <tr>
+                    <td>{{ medicamento.id }}</td>
+                    <td><strong>{{ medicamento.nombre }}</strong></td>
+                    <td>{{ medicamento.laboratorio }}</td>
+                    <td>{{ medicamento.stock }}</td>
+                    <td>${{ medicamento.precio_unitario }}</td>
+                    <td>
+                        <span style="color: {% if medicamento.stock > 50 %}#2da44e{% elif medicamento.stock > 10 %}#f66a0a{% else %}#d73a49{% endif %};">
+                            {% if medicamento.stock > 50 %}Alto{% elif medicamento.stock > 10 %}Medio{% else %}Bajo{% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{% url 'medicamento-edit' medicamento.id %}" class="btn btn-secondary" style="margin-right: 8px; text-decoration: none;">Editar</a>
+                        <a href="{% url 'medicamento-delete' medicamento.id %}" class="btn" style="background-color: #d73a49; color: white; text-decoration: none;">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7" style="text-align: center; color: #656d76; padding: 24px;">
+                        <p>No hay medicamentos registrados aún.</p>
+                        <p style="font-size: 12px; margin-top: 8px;">
+                            Haz clic en "Agregar Medicamento" para crear el primero.
+                        </p>
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h2>Información de la API</h2>
+    <p>Endpoints disponibles para la gestión de medicamentos:</p>
+    
+    <div style="background: #f6f8fa; padding: 16px; border-radius: 6px; margin-top: 16px;">
+        <h3 style="margin-bottom: 16px;">🔗 Endpoints Interactivos:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;">
+            <a href="/api/medicamentos/" class="btn btn-primary" target="_blank" style="text-decoration: none; display: block; padding: 12px; border-radius: 6px; background: #2da44e; color: white; text-align: center;">
+                <strong>GET /api/medicamentos/</strong><br>
+                <small>Listar todos los medicamentos</small>
+            </a>
+            <a href="/swagger/" class="btn btn-secondary" target="_blank" style="text-decoration: none; display: block; padding: 12px; border-radius: 6px; background: #f6f8fa; color: #24292f; text-align: center; border: 1px solid #d0d7de;">
+                <strong>POST /api/medicamentos/</strong><br>
+                <small>Crear nuevo medicamento (Swagger)</small>
+            </a>
+            <a href="/swagger/" class="btn btn-secondary" target="_blank" style="text-decoration: none; display: block; padding: 12px; border-radius: 6px; background: #f6f8fa; color: #24292f; text-align: center; border: 1px solid #d0d7de;">
+                <strong>PUT/DELETE /api/medicamentos/{id}/</strong><br>
+                <small>Actualizar/Eliminar (Swagger)</small>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function agregarMedicamento() {
+    window.open('/swagger/', '_blank');
+}
+
+function editarMedicamento(id) {
+    window.open('/swagger/', '_blank');
+}
+
+function eliminarMedicamento(id) {
+    if (confirm('¿Estás seguro de que quieres eliminar este medicamento?')) {
+        alert('Funcionalidad de eliminación en desarrollo. Usa Swagger por ahora.');
+    }
+}
+</script>
+{% endblock %}

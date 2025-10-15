@@ -1,10 +1,12 @@
 """
-Serializador para el modelo Especialidad.
-Convierte instancias de Especialidad a JSON y viceversa.
+Módulo de serializadores para la app gestion_clinica.
+Convierte los modelos Django a formato JSON para la API REST.
+Permite la serialización y deserialización de datos entre el frontend y backend.
+Facilita la comunicación con aplicaciones cliente (web, móvil, etc.).
 Uso de comentarios explicativos en cada módulo o clase.
 """
 from rest_framework import serializers
-from .models import Especialidad, Paciente, Medico, ConsultaMedica, Tratamiento, Medicamento, RecetaMedica
+from .models import Especialidad, Paciente, Medico, ConsultaMedica, Tratamiento, Medicamento, RecetaMedica, Cita
 
 class EspecialidadSerializer(serializers.ModelSerializer):
     """
@@ -70,4 +72,14 @@ class RecetaMedicaSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = RecetaMedica
+        fields = '__all__'
+
+# Serializador para el modelo Cita
+class CitaSerializer(serializers.ModelSerializer):
+    """
+    Serializador para el modelo Cita.
+    Incluye las relaciones con Paciente y Médico.
+    """
+    class Meta:
+        model = Cita
         fields = '__all__'

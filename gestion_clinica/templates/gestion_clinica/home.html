@@ -1,0 +1,76 @@
+{% extends 'gestion_clinica/base.html' %}
+
+{% block title %}Salud Vital - Inicio{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="floating-window">
+    <h2>🏥 Salud Vital</h2>
+    <p>Sistema de Gestión Clínica Integral</p>
+    
+    <div class="options-grid">
+        <a href="/api/web/especialidades/" class="option-card">
+            <h3>🏥 Especialidades</h3>
+            <p>Gestionar especialidades médicas</p>
+        </a>
+        
+        <a href="/api/web/pacientes/" class="option-card">
+            <h3>👥 Pacientes</h3>
+            <p>Gestionar información de pacientes</p>
+        </a>
+        
+        <a href="/api/web/medicos/" class="option-card">
+            <h3>👨‍⚕️ Médicos</h3>
+            <p>Administrar personal médico</p>
+        </a>
+        
+        <a href="/api/web/consultas/" class="option-card">
+            <h3>📋 Consultas</h3>
+            <p>Gestionar consultas médicas</p>
+        </a>
+        
+        <a href="/api/web/tratamientos/" class="option-card">
+            <h3>🩺 Tratamientos</h3>
+            <p>Administrar tratamientos médicos</p>
+        </a>
+        
+        <a href="/api/web/medicamentos/" class="option-card">
+            <h3>💊 Medicamentos</h3>
+            <p>Gestionar inventario de medicamentos</p>
+        </a>
+        
+        <a href="/api/web/recetas/" class="option-card">
+            <h3>📝 Recetas</h3>
+            <p>Gestionar recetas médicas</p>
+        </a>
+        
+        <a href="/swagger/" class="option-card" target="_blank">
+            <h3>🔧 API Docs</h3>
+            <p>Documentación de la API</p>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: linear-gradient(135deg, #f6f8fa 0%, #e1e4e8 100%);
+        min-height: 100vh;
+    }
+    
+    .main-content {
+        min-height: calc(100vh - 140px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+    }
+</style>
+{% endblock %}

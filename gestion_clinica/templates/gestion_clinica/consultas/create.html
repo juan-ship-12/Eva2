@@ -1,0 +1,64 @@
+{% extends 'gestion_clinica/form_base.html' %}
+
+{% block title %}Crear Consulta - Salud Vital{% endblock %}
+{% block header_title %}Crear Nueva Consulta{% endblock %}
+
+{% block form_title %}🩺 Nueva Consulta Médica{% endblock %}
+{% block form_description %}Complete los datos de la consulta médica para registrarla en el sistema.{% endblock %}
+{% block back_url %}{% url 'consulta-list' %}{% endblock %}
+{% block back_text %}Volver a Consultas{% endblock %}
+{% block form_section_title %}Datos de la Consulta{% endblock %}
+{% block submit_text %}💾 Guardar Consulta{% endblock %}
+{% block cancel_url %}{% url 'consulta-list' %}{% endblock %}
+
+{% block form_fields %}
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.paciente.id_for_label }}">{{ form.paciente.label }}</label>
+        {{ form.paciente }}
+        {% if form.paciente.errors %}
+            <div class="error">{{ form.paciente.errors.0 }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-field">
+        <label for="{{ form.medico.id_for_label }}">{{ form.medico.label }}</label>
+        {{ form.medico }}
+        {% if form.medico.errors %}
+            <div class="error">{{ form.medico.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="form-field">
+    <label for="{{ form.fecha_consulta.id_for_label }}">{{ form.fecha_consulta.label }}</label>
+    {{ form.fecha_consulta }}
+    {% if form.fecha_consulta.errors %}
+        <div class="error">{{ form.fecha_consulta.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.motivo.id_for_label }}">{{ form.motivo.label }}</label>
+    {{ form.motivo }}
+    {% if form.motivo.errors %}
+        <div class="error">{{ form.motivo.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.diagnostico.id_for_label }}">{{ form.diagnostico.label }}</label>
+    {{ form.diagnostico }}
+    {% if form.diagnostico.errors %}
+        <div class="error">{{ form.diagnostico.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.estado.id_for_label }}">{{ form.estado.label }}</label>
+    {{ form.estado }}
+    {% if form.estado.errors %}
+        <div class="error">{{ form.estado.errors.0 }}</div>
+    {% endif %}
+</div>
+{% endblock %}

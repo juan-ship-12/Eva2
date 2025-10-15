@@ -1,0 +1,46 @@
+{% extends 'gestion_clinica/form_base.html' %}
+
+{% block title %}Editar Tratamiento - Salud Vital{% endblock %}
+{% block header_title %}Editar Tratamiento{% endblock %}
+
+{% block form_title %}✏️ Editar Tratamiento{% endblock %}
+{% block form_description %}Modifique los datos del tratamiento para la consulta del paciente <strong>{{ tratamiento.consulta.paciente.nombre }} {{ tratamiento.consulta.paciente.apellido }}</strong>.{% endblock %}
+{% block back_url %}{% url 'tratamiento-list' %}{% endblock %}
+{% block back_text %}Volver a Tratamientos{% endblock %}
+{% block form_section_title %}Datos del Tratamiento{% endblock %}
+{% block submit_text %}💾 Actualizar Tratamiento{% endblock %}
+{% block cancel_url %}{% url 'tratamiento-list' %}{% endblock %}
+
+{% block form_fields %}
+<div class="form-field">
+    <label for="{{ form.consulta.id_for_label }}">{{ form.consulta.label }}</label>
+    {{ form.consulta }}
+    {% if form.consulta.errors %}
+        <div class="error">{{ form.consulta.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.descripcion.id_for_label }}">{{ form.descripcion.label }}</label>
+    {{ form.descripcion }}
+    {% if form.descripcion.errors %}
+        <div class="error">{{ form.descripcion.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.duracion_dias.id_for_label }}">{{ form.duracion_dias.label }}</label>
+    {{ form.duracion_dias }}
+    {% if form.duracion_dias.errors %}
+        <div class="error">{{ form.duracion_dias.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.observaciones.id_for_label }}">{{ form.observaciones.label }}</label>
+    {{ form.observaciones }}
+    {% if form.observaciones.errors %}
+        <div class="error">{{ form.observaciones.errors.0 }}</div>
+    {% endif %}
+</div>
+{% endblock %}

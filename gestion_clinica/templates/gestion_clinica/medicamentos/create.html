@@ -1,0 +1,50 @@
+{% extends 'gestion_clinica/form_base.html' %}
+
+{% block title %}Crear Medicamento - Salud Vital{% endblock %}
+{% block header_title %}Crear Nuevo Medicamento{% endblock %}
+
+{% block form_title %}💊 Nuevo Medicamento{% endblock %}
+{% block form_description %}Complete los datos del medicamento para registrarlo en el inventario del sistema.{% endblock %}
+{% block back_url %}{% url 'medicamento-list' %}{% endblock %}
+{% block back_text %}Volver a Medicamentos{% endblock %}
+{% block form_section_title %}Datos del Medicamento{% endblock %}
+{% block submit_text %}💾 Guardar Medicamento{% endblock %}
+{% block cancel_url %}{% url 'medicamento-list' %}{% endblock %}
+
+{% block form_fields %}
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }}</label>
+        {{ form.nombre }}
+        {% if form.nombre.errors %}
+            <div class="error">{{ form.nombre.errors.0 }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-field">
+        <label for="{{ form.laboratorio.id_for_label }}">{{ form.laboratorio.label }}</label>
+        {{ form.laboratorio }}
+        {% if form.laboratorio.errors %}
+            <div class="error">{{ form.laboratorio.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="form-grid-2">
+    <div class="form-field">
+        <label for="{{ form.stock.id_for_label }}">{{ form.stock.label }}</label>
+        {{ form.stock }}
+        {% if form.stock.errors %}
+            <div class="error">{{ form.stock.errors.0 }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-field">
+        <label for="{{ form.precio_unitario.id_for_label }}">{{ form.precio_unitario.label }}</label>
+        {{ form.precio_unitario }}
+        {% if form.precio_unitario.errors %}
+            <div class="error">{{ form.precio_unitario.errors.0 }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

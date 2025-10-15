@@ -1,0 +1,169 @@
+{% extends 'gestion_clinica/base.html' %}
+
+{% block title %}Editar Paciente - Salud Vital{% endblock %}
+
+{% block header_title %}Editar Paciente{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>✏️ Editar Paciente</h2>
+    <p>Modifique los datos del paciente <strong>{{ paciente.nombre }} {{ paciente.apellido }}</strong>.</p>
+    
+    <div style="margin-top: 16px;">
+        <a href="{% url 'paciente-list' %}" class="btn btn-secondary">← Volver a Pacientes</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Datos del Paciente</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div style="background: #d1ecf1; color: #0c5460; padding: 12px; border-radius: 6px; margin-bottom: 16px; border: 1px solid #bee5eb;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST" style="margin-top: 20px;">
+        {% csrf_token %}
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label for="{{ form.nombre.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.nombre.label }}
+                </label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.nombre.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div>
+                <label for="{{ form.apellido.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.apellido.label }}
+                </label>
+                {{ form.apellido }}
+                {% if form.apellido.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.apellido.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label for="{{ form.rut.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.rut.label }}
+                </label>
+                {{ form.rut }}
+                {% if form.rut.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.rut.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div>
+                <label for="{{ form.fecha_nacimiento.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.fecha_nacimiento.label }}
+                </label>
+                {{ form.fecha_nacimiento }}
+                {% if form.fecha_nacimiento.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.fecha_nacimiento.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label for="{{ form.telefono.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.telefono.label }}
+                </label>
+                {{ form.telefono }}
+                {% if form.telefono.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.telefono.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div>
+                <label for="{{ form.correo.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.correo.label }}
+                </label>
+                {{ form.correo }}
+                {% if form.correo.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.correo.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+            <div>
+                <label for="{{ form.tipo_sangre.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                    {{ form.tipo_sangre.label }}
+                </label>
+                {{ form.tipo_sangre }}
+                {% if form.tipo_sangre.errors %}
+                    <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                        {{ form.tipo_sangre.errors.0 }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.direccion.id_for_label }}" style="display: block; margin-bottom: 8px; font-weight: 600;">
+                {{ form.direccion.label }}
+            </label>
+            {{ form.direccion }}
+            {% if form.direccion.errors %}
+                <div style="color: #d73a49; font-size: 12px; margin-top: 4px;">
+                    {{ form.direccion.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="submit" class="btn btn-primary" style="background: #2da44e; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600;">
+                💾 Actualizar Paciente
+            </button>
+            <a href="{% url 'paciente-list' %}" class="btn btn-secondary" style="background: #f6f8fa; color: #24292f; border: 1px solid #d0d7de; padding: 12px 24px; border-radius: 6px; text-decoration: none;">
+                ❌ Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+
+<style>
+/* Estilos para los campos del formulario */
+input, textarea, select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #ffffff;
+    transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #0969da;
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+</style>
+{% endblock %}

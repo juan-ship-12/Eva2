@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Salud Vital - Sistema de Gestión Clínica{% endblock %}</title>
+    <style>
+        /* Estilo sobrio tipo GitHub */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292f;
+            background-color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        /* Header */
+        .header {
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #d0d7de;
+            padding: 16px 0;
+        }
+        
+        .header h1 {
+            color: #24292f;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        /* Main content */
+        .main-content {
+            min-height: calc(100vh - 140px);
+            padding: 24px 0;
+        }
+        
+        /* Cards estilo GitHub */
+        .card {
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
+        }
+        
+        .card h2 {
+            color: #24292f;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .card p {
+            color: #656d76;
+            margin-bottom: 8px;
+        }
+        
+        /* Botones estilo GitHub */
+        .btn {
+            display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            color: #ffffff;
+            background-color: #2da44e;
+            border-color: #2da44e;
+        }
+        
+        .btn-primary:hover {
+            background-color: #238a3e;
+            border-color: #238a3e;
+        }
+        
+        .btn-secondary {
+            color: #24292f;
+            background-color: #f6f8fa;
+            border-color: #d0d7de;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+            border-color: #d0d7de;
+        }
+        
+        /* Tablas estilo GitHub */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        
+        .table th,
+        .table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #d0d7de;
+        }
+        
+        .table th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+            color: #24292f;
+        }
+        
+        .table tr:hover {
+            background-color: #f6f8fa;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f6f8fa;
+            border-top: 1px solid #d0d7de;
+            padding: 24px 0;
+            margin-top: 48px;
+            text-align: center;
+            color: #656d76;
+            font-size: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        /* Ventana flotante */
+        .floating-window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 1000;
+            text-align: center;
+        }
+        
+        .floating-window h2 {
+            color: #24292f;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .floating-window p {
+            color: #656d76;
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        /* Grid de opciones */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .option-card {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #24292f;
+            transition: all 0.2s;
+        }
+        
+        .option-card:hover {
+            background: #e1e4e8;
+            border-color: #c6cbd1;
+            transform: translateY(-2px);
+        }
+        
+        .option-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .option-card p {
+            font-size: 12px;
+            color: #656d76;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            .floating-window {
+                padding: 24px;
+                max-width: 90%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+    
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>{% block header_title %}Salud Vital{% endblock %}</h1>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <strong>Salud Vital</strong><br>
+                    Sistema de Gestión Clínica
+                </div>
+                <div class="footer-section">
+                    <strong>Sección:</strong> Backend Development<br>
+                    <strong>Año:</strong> 2025
+                </div>
+                <div class="footer-section">
+                    <strong>Desarrollado con Django</strong><br>
+                    Django REST Framework
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+    
+    <!-- SweetAlert2 para mensajes de Django -->
+    <script>
+        // Mostrar mensajes de Django como SweetAlert2
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: '{{ message }}',
+                        icon: 'success',
+                        confirmButtonColor: '#2da44e',
+                        confirmButtonText: 'Entendido'
+                    });
+                {% elif message.tags == 'error' %}
+                    Swal.fire({
+                        title: 'Error',
+                        text: '{{ message }}',
+                        icon: 'error',
+                        confirmButtonColor: '#d73a49',
+                        confirmButtonText: 'Entendido'
+                    });
+                {% elif message.tags == 'warning' %}
+                    Swal.fire({
+                        title: 'Advertencia',
+                        text: '{{ message }}',
+                        icon: 'warning',
+                        confirmButtonColor: '#f66a0a',
+                        confirmButtonText: 'Entendido'
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </script>
+</body>
+</html>

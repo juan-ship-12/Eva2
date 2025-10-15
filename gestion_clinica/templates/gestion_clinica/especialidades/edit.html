@@ -1,0 +1,30 @@
+{% extends 'gestion_clinica/form_base.html' %}
+
+{% block title %}Editar Especialidad - Salud Vital{% endblock %}
+{% block header_title %}Editar Especialidad{% endblock %}
+
+{% block form_title %}✏️ Editar Especialidad{% endblock %}
+{% block form_description %}Modifique los datos de la especialidad <strong>{{ especialidad.nombre }}</strong>.{% endblock %}
+{% block back_url %}{% url 'especialidad-list' %}{% endblock %}
+{% block back_text %}Volver a Especialidades{% endblock %}
+{% block form_section_title %}Datos de la Especialidad{% endblock %}
+{% block submit_text %}💾 Actualizar Especialidad{% endblock %}
+{% block cancel_url %}{% url 'especialidad-list' %}{% endblock %}
+
+{% block form_fields %}
+<div class="form-field">
+    <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }}</label>
+    {{ form.nombre }}
+    {% if form.nombre.errors %}
+        <div class="error">{{ form.nombre.errors.0 }}</div>
+    {% endif %}
+</div>
+
+<div class="form-field">
+    <label for="{{ form.descripcion.id_for_label }}">{{ form.descripcion.label }}</label>
+    {{ form.descripcion }}
+    {% if form.descripcion.errors %}
+        <div class="error">{{ form.descripcion.errors.0 }}</div>
+    {% endif %}
+</div>
+{% endblock %}

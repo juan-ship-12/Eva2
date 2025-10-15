@@ -1,0 +1,236 @@
+[
+  {
+    "model": "gestion_clinica.especialidad",
+    "pk": 1,
+    "fields": {
+      "nombre": "Cardiología",
+      "descripcion": "Especialidad médica que se encarga del diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular."
+    }
+  },
+  {
+    "model": "gestion_clinica.especialidad",
+    "pk": 2,
+    "fields": {
+      "nombre": "Neurología",
+      "descripcion": "Especialidad médica que se encarga del diagnóstico y tratamiento de enfermedades del sistema nervioso."
+    }
+  },
+  {
+    "model": "gestion_clinica.especialidad",
+    "pk": 3,
+    "fields": {
+      "nombre": "Pediatría",
+      "descripcion": "Especialidad médica que se encarga del cuidado de la salud de bebés, niños y adolescentes."
+    }
+  },
+  {
+    "model": "gestion_clinica.especialidad",
+    "pk": 4,
+    "fields": {
+      "nombre": "Dermatología",
+      "descripcion": "Especialidad médica que se encarga del diagnóstico y tratamiento de enfermedades de la piel."
+    }
+  },
+  {
+    "model": "gestion_clinica.especialidad",
+    "pk": 5,
+    "fields": {
+      "nombre": "Ginecología",
+      "descripcion": "Especialidad médica que se encarga del cuidado de la salud reproductiva de la mujer."
+    }
+  },
+  {
+    "model": "gestion_clinica.paciente",
+    "pk": 1,
+    "fields": {
+      "rut": "12.345.678-9",
+      "nombre": "María",
+      "apellido": "González",
+      "fecha_nacimiento": "1985-03-15",
+      "tipo_sangre": "A+",
+      "correo": "maria.gonzalez@email.com",
+      "telefono": "+56912345678",
+      "direccion": "Av. Providencia 1234, Santiago",
+      "activo": true
+    }
+  },
+  {
+    "model": "gestion_clinica.paciente",
+    "pk": 2,
+    "fields": {
+      "rut": "98.765.432-1",
+      "nombre": "Carlos",
+      "apellido": "Rodríguez",
+      "fecha_nacimiento": "1978-07-22",
+      "tipo_sangre": "O+",
+      "correo": "carlos.rodriguez@email.com",
+      "telefono": "+56987654321",
+      "direccion": "Las Condes 5678, Santiago",
+      "activo": true
+    }
+  },
+  {
+    "model": "gestion_clinica.paciente",
+    "pk": 3,
+    "fields": {
+      "rut": "11.222.333-4",
+      "nombre": "Ana",
+      "apellido": "Martínez",
+      "fecha_nacimiento": "1992-11-08",
+      "tipo_sangre": "B-",
+      "correo": "ana.martinez@email.com",
+      "telefono": "+56911222333",
+      "direccion": "Ñuñoa 9012, Santiago",
+      "activo": true
+    }
+  },
+  {
+    "model": "gestion_clinica.medico",
+    "pk": 1,
+    "fields": {
+      "nombre": "Dr. Roberto",
+      "apellido": "Silva",
+      "rut": "15.678.901-2",
+      "correo": "roberto.silva@saludvital.cl",
+      "telefono": "+56915678901",
+      "activo": true,
+      "especialidad": 1
+    }
+  },
+  {
+    "model": "gestion_clinica.medico",
+    "pk": 2,
+    "fields": {
+      "nombre": "Dra. Carmen",
+      "apellido": "Vargas",
+      "rut": "18.234.567-8",
+      "correo": "carmen.vargas@saludvital.cl",
+      "telefono": "+56918234567",
+      "activo": true,
+      "especialidad": 2
+    }
+  },
+  {
+    "model": "gestion_clinica.medico",
+    "pk": 3,
+    "fields": {
+      "nombre": "Dr. Luis",
+      "apellido": "Fernández",
+      "rut": "13.456.789-0",
+      "correo": "luis.fernandez@saludvital.cl",
+      "telefono": "+56913456789",
+      "activo": true,
+      "especialidad": 3
+    }
+  },
+  {
+    "model": "gestion_clinica.medicamento",
+    "pk": 1,
+    "fields": {
+      "nombre": "Paracetamol",
+      "laboratorio": "Laboratorio Chile",
+      "stock": 500,
+      "precio_unitario": "2500.00"
+    }
+  },
+  {
+    "model": "gestion_clinica.medicamento",
+    "pk": 2,
+    "fields": {
+      "nombre": "Ibuprofeno",
+      "laboratorio": "Farmacéutica Nacional",
+      "stock": 300,
+      "precio_unitario": "3200.00"
+    }
+  },
+  {
+    "model": "gestion_clinica.medicamento",
+    "pk": 3,
+    "fields": {
+      "nombre": "Omeprazol",
+      "laboratorio": "Medicamentos del Sur",
+      "stock": 200,
+      "precio_unitario": "4500.00"
+    }
+  },
+  {
+    "model": "gestion_clinica.consultamedica",
+    "pk": 1,
+    "fields": {
+      "paciente": 1,
+      "medico": 1,
+      "fecha_consulta": "2025-01-15T10:00:00Z",
+      "motivo": "Dolor en el pecho y falta de aire",
+      "diagnostico": "Arritmia cardíaca leve. Se recomienda monitoreo y medicación.",
+      "estado": "COMPLETADA"
+    }
+  },
+  {
+    "model": "gestion_clinica.consultamedica",
+    "pk": 2,
+    "fields": {
+      "paciente": 2,
+      "medico": 2,
+      "fecha_consulta": "2025-01-16T14:30:00Z",
+      "motivo": "Dolores de cabeza frecuentes",
+      "diagnostico": "Migraña tensional. Se prescribe tratamiento preventivo.",
+      "estado": "COMPLETADA"
+    }
+  },
+  {
+    "model": "gestion_clinica.consultamedica",
+    "pk": 3,
+    "fields": {
+      "paciente": 3,
+      "medico": 3,
+      "fecha_consulta": "2025-01-17T09:15:00Z",
+      "motivo": "Control pediátrico rutinario",
+      "diagnostico": "Niño sano. Desarrollo normal para su edad.",
+      "estado": "COMPLETADA"
+    }
+  },
+  {
+    "model": "gestion_clinica.tratamiento",
+    "pk": 1,
+    "fields": {
+      "consulta": 1,
+      "descripcion": "Tratamiento para arritmia cardíaca con betabloqueadores",
+      "duracion_dias": 30,
+      "observaciones": "Tomar medicamento en ayunas. Evitar ejercicio intenso."
+    }
+  },
+  {
+    "model": "gestion_clinica.tratamiento",
+    "pk": 2,
+    "fields": {
+      "consulta": 2,
+      "descripcion": "Tratamiento preventivo para migraña",
+      "duracion_dias": 60,
+      "observaciones": "Evitar factores desencadenantes como estrés y falta de sueño."
+    }
+  },
+  {
+    "model": "gestion_clinica.recetamedica",
+    "pk": 1,
+    "fields": {
+      "tratamiento": 1,
+      "medicamento": 1,
+      "dosis": "500mg",
+      "frecuencia": "8H",
+      "duracion": "7 días",
+      "motivo": "Control del dolor y reducción de inflamación"
+    }
+  },
+  {
+    "model": "gestion_clinica.recetamedica",
+    "pk": 2,
+    "fields": {
+      "tratamiento": 2,
+      "medicamento": 2,
+      "dosis": "400mg",
+      "frecuencia": "12H",
+      "duracion": "10 días",
+      "motivo": "Tratamiento antiinflamatorio para migraña"
+    }
+  }
+]
